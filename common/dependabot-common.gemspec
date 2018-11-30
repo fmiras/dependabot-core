@@ -4,7 +4,7 @@ require "find"
 require "./lib/dependabot/version"
 
 Gem::Specification.new do |spec|
-  spec.name         = "dependabot-core"
+  spec.name         = "dependabot-common"
   spec.version      = Dependabot::VERSION
   spec.summary      = "Automated dependency management"
   spec.description  = "Automated dependency management for Ruby, JavaScript, "\
@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   spec.require_path = "lib"
   spec.files        = ["CHANGELOG.md", "LICENSE", "README.md"]
 
-  ignores = File.readlines(".gitignore").grep(/\S+/).map(&:chomp)
-  Find.find("lib", "helpers") do |path|
+  ignores = File.readlines("../.gitignore").grep(/\S+/).map(&:chomp)
+  Find.find("lib") do |path|
     if ignores.any? { |i| File.fnmatch(i, "/" + path, File::FNM_DOTMATCH) }
       Find.prune
     else

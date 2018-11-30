@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: dependabot/dependabot-core:0.1.45
-    working_directory: ~/dependabot-core
+    working_directory: ~/dependabot-core/common
     steps:
       - checkout
 
@@ -24,10 +24,10 @@ jobs:
       - save_cache:
           key: v1-dependencies-{{ .Branch }}-{{ epoch }}
           paths:
-            - ~/dependabot-core/vendor/bundle
-            - ~/dependabot-core/helpers/yarn/node_modules
-            - ~/dependabot-core/helpers/npm/node_modules
-            - ~/dependabot-core/helpers/php/vendor
+            - ~/dependabot-core/common/vendor/bundle
+            - ~/dependabot-core/common/helpers/yarn/node_modules
+            - ~/dependabot-core/common/helpers/npm/node_modules
+            - ~/dependabot-core/common/helpers/php/vendor
 
       # Run code formatting linters
       - run: bundle exec rubocop
