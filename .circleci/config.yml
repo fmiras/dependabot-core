@@ -31,6 +31,7 @@ jobs:
 
       # Run code formatting linters
       - run: cd common && bundle exec rubocop
+      - run: cd terraform && bundle exec rubocop
       - run: cd common/helpers/yarn && node_modules/.bin/eslint lib test bin
       - run: cd common/helpers/npm && node_modules/.bin/eslint lib test bin
       - run: cd common/helpers/php && vendor/bin/php-cs-fixer fix --dry-run
@@ -38,7 +39,8 @@ jobs:
       # Run tests
       - run: cd common/helpers/yarn && node_modules/.bin/jest
       - run: cd common/helpers/npm && node_modules/.bin/jest
-      - run: cd common && bundle exec rspec spec --format documentation --format RspecJunitFormatter -o ~/rspec/rspec.xml --tag "~skip_ci"
+      - run: cd common && bundle exec rspec spec --format documentation --format RspecJunitFormatter -o ~/rspec/rspec-common.xml --tag "~skip_ci"
+      - run: cd terraform && bundle exec rspec spec --format documentation --format RspecJunitFormatter -o ~/rspec/rspec-terraform.xml
       - store_test_results:
           path: ~/rspec
       - store_artifacts:
