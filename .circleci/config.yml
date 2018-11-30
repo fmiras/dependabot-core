@@ -13,7 +13,8 @@ jobs:
             - v1-dependencies-master
 
       # Install dependencies
-      - run: cd common && bundle install --path vendor/bundle
+      - run: cd common && bundle install --path ../vendor/bundle
+      - run: cd terraform && bundle install --path ../vendor/bundle
       - run: cd common/helpers/yarn && yarn install
       - run: cd common/helpers/npm && yarn install
       - run: cd common/helpers/php && composer install
