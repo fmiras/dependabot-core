@@ -35,7 +35,7 @@ Metrics/MethodLength:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
-    - dependabot-core.gemspec
+    - dependabot-*.gemspec
 
 Metrics/ParameterLists:
   CountKeywordArgs: false
